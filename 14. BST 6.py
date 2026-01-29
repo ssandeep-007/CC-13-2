@@ -15,7 +15,7 @@ class BST:
         if data<node.data:
             if node.left is None:
                 node.left=Node(data)
-            else:
+            if data>node.data:
                 self.insertRecursion(node.left,data)
         else:
             if node.right is None:
