@@ -17,8 +17,6 @@ class BuildTree {
     BuildTree() {
         this.root = null;
     }
-
-    // Insert into BST
     void insert(int data) {
         if (root == null) {
             root = new Node(data);
@@ -43,12 +41,10 @@ class BuildTree {
         }
     }
 
-    // Check leaf node
     boolean isLeaf(Node node) {
         return node != null && node.left == null && node.right == null;
     }
 
-    // Left boundary (excluding leaf)
     void leftBoundary(Node root, List<Integer> res) {
         Node curr = root.left;
         while (curr != null) {
@@ -59,7 +55,6 @@ class BuildTree {
         }
     }
 
-    // Right boundary (excluding leaf)
     void rightBoundary(Node root, List<Integer> res) {
         Node curr = root.right;
         List<Integer> temp = new ArrayList<>();
@@ -71,13 +66,11 @@ class BuildTree {
             curr = (curr.right != null) ? curr.right : curr.left;
         }
 
-        // Add in reverse order
         for (int i = temp.size() - 1; i >= 0; i--) {
             res.add(temp.get(i));
         }
     }
 
-    // Leaf nodes
     void leafNodes(Node root, List<Integer> res) {
         if (root == null) return;
 
@@ -90,16 +83,15 @@ class BuildTree {
         leafNodes(root.right, res);
     }
 
-    // Boundary traversal
     List<Integer> boundaryTraversal(Node root) {
         List<Integer> res = new ArrayList<>();
         if (root == null) return res;
 
-        res.add(root.data);              // Root
-        leftBoundary(root, res);         // Left boundary
-        leafNodes(root.left, res);       // Left subtree leaves
-        leafNodes(root.right, res);      // Right subtree leaves
-        rightBoundary(root, res);        // Right boundary
+        res.add(root.data);              
+        leftBoundary(root, res);         
+        leafNodes(root.left, res);       
+        leafNodes(root.right, res);      
+        rightBoundary(root, res);        
 
         return res;
     }
